@@ -1,7 +1,5 @@
 FROM python:latest
 
-RUN apt-get update && apt-get install -y libmysqlclient-dev
-
 COPY ./app /app
 
 WORKDIR /app
