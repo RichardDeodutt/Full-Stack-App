@@ -8,7 +8,7 @@ import mysqlx
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:example@http://mysql/test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:example@http://mysql:3306/test'
 
 app.config['SQLALCHEMY_DATABASE_TRACK_MODIFICATIONS'] = False
 
