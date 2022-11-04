@@ -27,7 +27,7 @@ services:
   backend:
     build: ./backend/.
     container_name: "backend"
-    restart: "no"
+    restart: "always"
     networks:
       - web
     working_dir: /app
