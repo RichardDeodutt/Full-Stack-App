@@ -1,0 +1,64 @@
+version: "3.3"
+
+services:
+
+  mysql:
+    image: mysql
+    container_name: "mysql"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    networks:
+      - web
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  adminer:
+    image: adminer
+    container_name: "adminer"
+    restart: always
+    networks:
+      - web
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+
+  backend:
+    build: ./backend/.
+    container_name: "backend"
+    restart: "always"
+    networks:
+      - web
+    working_dir: /app
+    command: python3 -m gunicorn -w 4 app:app -b 0.0.0.0:8000
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ./frontend/.
+    container_name: "frontend"
+    restart: "always"
+    networks:
+      - web
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    working_dir: /app
+    command: npx serve build
+    depends_on:
+      - backend
+
+  nginx:
+    build: ./nginx/.
+    container_name: "nginx"
+    restart: "always"
+    ports:
+      - "80:80"
+    networks:
+      - web
+    depends_on:
+      - frontend
+
+networks:
+  web:
