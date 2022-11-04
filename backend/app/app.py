@@ -8,17 +8,17 @@ import mysqlx
 app = Flask(__name__)
 CORS(app)
 
-try:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:example@mysql:3306/test'
-except:
-    print('Error')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:example@mysql:3306/test'
 
 app.config['SQLALCHEMY_DATABASE_TRACK_MODIFICATIONS'] = False
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
+try:
+    db = SQLAlchemy(app)
+    ma = Marshmallow(app)
+except:
+    print('Error')
 
 class Articles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
