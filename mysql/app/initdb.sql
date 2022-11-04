@@ -1,2 +1,2 @@
 CREATE DATABASE test;
-use test;
+USE test;
