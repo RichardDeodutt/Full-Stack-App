@@ -12,6 +12,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:example@htt
 
 app.config['SQLALCHEMY_DATABASE_TRACK_MODIFICATIONS'] = False
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
