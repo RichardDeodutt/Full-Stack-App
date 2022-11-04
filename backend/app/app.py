@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import datetime
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
-
+import mysqlx
 
 app = Flask(__name__)
 CORS(app)
