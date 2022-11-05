@@ -5,7 +5,7 @@ services:
   mysql:
     build: ./mysql/.
     container_name: "mysql"
-    restart: "no"
+    restart: "always"
     networks:
       - web
     command: --default-authentication-plugin=mysql_native_password
@@ -16,11 +16,22 @@ services:
   adminer:
     image: adminer
     container_name: "adminer"
-    restart: "no"
+    restart: "always"
     networks:
       - web
     depends_on:
       - mysql
+
+  nginx-adminer:
+    build: ./nginx-adminer/.
+    container_name: "nginx-adminer"
+    restart: "always"
+    ports:
+      - "8080:80"
+    networks:
+      - web
+    depends_on:
+      - adminer
 
   backend:
     build: ./backend/.
@@ -33,10 +44,21 @@ services:
     depends_on:
       - mysql
 
+  nginx-backend:
+    build: ./nginx-backend/.
+    container_name: "nginx-backend"
+    restart: "always"
+    ports:
+      - "3000:80"
+    networks:
+      - web
+    depends_on:
+      - backend
+
   frontend:
     build: ./frontend/.
     container_name: "frontend"
-    restart: "no"
+    restart: "always"
     networks:
       - web
     environment:
@@ -46,10 +68,10 @@ services:
     depends_on:
       - backend
 
-  nginx:
-    build: ./nginx/.
-    container_name: "nginx"
-    restart: "no"
+  nginx-frontend:
+    build: ./nginx-frontend/.
+    container_name: "nginx-frontend"
+    restart: "always"
     ports:
       - "80:80"
     networks:
