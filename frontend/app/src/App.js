@@ -9,7 +9,7 @@ function App() {
   const [editedArticle, setEditedArticle] = useState(null)
 
   useEffect(() => {
-   fetch('http://192.168.0.240:8333/get', {
+   fetch(`${BackendRoot}/get/`, {
       'method':'GET',
       headers: {
         'Content-Type':'application/json'
