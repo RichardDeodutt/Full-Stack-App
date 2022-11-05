@@ -3,9 +3,9 @@ import {useState, useEffect} from 'react';
 import ArticleList from './components/ArticleList';
 import Form from './components/Form'
 
-var BackendRoot = "http://backend:8000";
-
 function App() {
+
+  var BackendRoot = "http://backend:8000";
 
   const [articles, setArticles] = useState([])
   const [editedArticle, setEditedArticle] = useState(null)
