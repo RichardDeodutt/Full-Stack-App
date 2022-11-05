@@ -31,13 +31,10 @@ class ArticleSchema(ma.Schema):
     class Meta:
         fields = ('id', 'title', 'body', 'date')
 
-try:
-    article_schema = ArticleSchema()
-    articles_schema = ArticleSchema(many=True)
+article_schema = ArticleSchema()
+articles_schema = ArticleSchema(many=True)
 
-    db.create_all()
-except:
-    print('Database Error')
+db.create_all()
 
 @app.route('/get', methods = ['GET'])
 def get_articles():
