@@ -12,7 +12,7 @@ export default class APIService {
     }
 
     static InsertArticle(body) {
-        return fetch(`${window.BackendRoot}/add/`, {
+        return fetch(`${window.BackendRoot}/add`, {
             'method':'POST',
             headers: {
               'Content-Type':'application/json'

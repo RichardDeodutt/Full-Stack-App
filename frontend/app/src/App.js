@@ -11,7 +11,7 @@ function App() {
   const [editedArticle, setEditedArticle] = useState(null)
 
   useEffect(() => {
-   fetch(`${window.BackendRoot}/get/`, {
+   fetch(`${window.BackendRoot}/get`, {
       'method':'GET',
       headers: {
         'Content-Type':'application/json'
