@@ -14,11 +14,8 @@ app.config['SQLALCHEMY_DATABASE_TRACK_MODIFICATIONS'] = False
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-try:
-    db = SQLAlchemy(app)
-    ma = Marshmallow(app)
-except:
-    print('Error')
+db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
 class Articles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,10 +31,13 @@ class ArticleSchema(ma.Schema):
     class Meta:
         fields = ('id', 'title', 'body', 'date')
 
-article_schema = ArticleSchema()
-articles_schema = ArticleSchema(many=True)
+try:
+    article_schema = ArticleSchema()
+    articles_schema = ArticleSchema(many=True)
 
-db.create_all()
+    db.create_all()
+except:
+    print('Database Error')
 
 @app.route('/get', methods = ['GET'])
 def get_articles():
