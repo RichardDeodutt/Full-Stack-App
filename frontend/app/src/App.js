@@ -3,15 +3,15 @@ import {useState, useEffect} from 'react';
 import ArticleList from './components/ArticleList';
 import Form from './components/Form'
 
-function App() {
+window.BackendRoot = "http://backend:8000";
 
-  var BackendRoot = "http://backend:8000";
+function App() {
 
   const [articles, setArticles] = useState([])
   const [editedArticle, setEditedArticle] = useState(null)
 
   useEffect(() => {
-   fetch(`${BackendRoot}/get/`, {
+   fetch(`${window.BackendRoot}/get/`, {
       'method':'GET',
       headers: {
         'Content-Type':'application/json'
