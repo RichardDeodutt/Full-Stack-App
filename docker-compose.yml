@@ -43,8 +43,6 @@ services:
       - web
     environment:
       NODE_ENV: production
-    ports:
-      - 3000:3000
     working_dir: /app
     command: npx serve build
     depends_on:

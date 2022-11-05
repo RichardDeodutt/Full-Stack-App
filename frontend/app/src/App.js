@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import ArticleList from './components/ArticleList';
 import Form from './components/Form'
 
-window.BackendRoot = "http://backend:8000";
+window.BackendRoot = "http://"+window.location.hostname+":3000";
 
 function App() {
 
